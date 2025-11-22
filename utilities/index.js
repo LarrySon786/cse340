@@ -58,6 +58,29 @@ Util.buildClassificationGrid = async function(data){
   return grid
 }
 
+// CONSTRUCT THE PRODUCT PAGE DISPLAY
+
+Util.buildProductGrid = async function (data) {
+  
+    let display =
+      `
+      <div id="product-display-page">
+        <img src="${data.inv_image}" alt="Image of ${data.inv_make} ${data.inv_model}">
+        <section>
+          <div>
+            <h1>${data.inv_year} ${data.inv_make} ${data.inv_model}</h1>
+            <h2>$${Intl.NumberFormat("en-US").format(data.inv_price)}</h2>
+          </div>
+          <div id="product-description">
+            <p><span>Mileage:</span> ${Intl.NumberFormat("en-US").format(data.inv_miles)}</p>
+            <p><span>Color:</span> ${data.inv_color}</p>
+            <p><span>Description:</span> ${data.inv_description}</p>
+          </div>
+        </section>
+        </div>
+      `
+  return display
+}
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 

@@ -60,6 +60,16 @@ nav ul {
   font-size: 1.3rem;
 }
 
+nav ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+nav ul li a:hover {
+  text-decoration: none;
+  background-color: white;
+  color: black;
+}
 
 main {
   display: grid;
@@ -165,8 +175,46 @@ main {
   font-weight: 700;
 }
 
+/* Inventory Display by Category Type */
 
+#inv-display {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  list-style: none;
+}
+#inv-display img{
+  border: solid black 2px;
+  height:150px;
+}
 
+#inv-display li {
+  margin: 2rem;
+}
+
+#inv-display h2 a {
+  color: white;
+  text-decoration: none;
+  background-color: black;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+#inv-display span {
+  font-size: 1.3rem;
+  font-style: italic;
+
+}
+
+/* Individual Vehicale Page Display */
+#product-display-page img{
+  border: solid black 1px;
+  margin: 1rem;
+}
+
+#product-display-page span {
+  font-weight: 700;
+}
 
 /* Larger screen querey */
 
@@ -200,5 +248,10 @@ main {
 
   #delorean-upgrades {
     grid-column: 2/3;
+  }
+
+  #product-display-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 }
