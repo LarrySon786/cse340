@@ -24,17 +24,20 @@ validate.classificationRules = () => {
 validate.checkClassificationData = async (req, res, next) => {
     const { classification_name } = req.body
     let errors = []
+    console.log("4 is here")
     errors = validationResult(req)
+    console.log("5 is here")
     if (!errors.isEmpty()) {
         let nav = await utilities.getNav()
-        res.render("inventory/add-classification"), {
+        res.render("inventory/add-classification", {
             errors,
             title: "Add Classification",
             nav,
             classification_name,
-        }
+        })
         return;
     }
+    console.log("6 is here")
     next()
 }
 
@@ -120,7 +123,7 @@ validate.checkInventoryData = async (req, res, next) => {
     if (!errors.isEmpty()) {
         let nav = await utilities.getNav()
         let classificationList = utilities.buildClassificationList();
-        res.render("inventory/add-inventory"), {
+        res.render("inventory/add-inventory", {
             errors,
             title: "Add Inventory",
             nav,
@@ -132,8 +135,8 @@ validate.checkInventoryData = async (req, res, next) => {
             inv_miles,
             inv_color,
             classificationList,
-            classification_id,
-        }
+            // classification_id,
+        })
         return;
     }
     next()

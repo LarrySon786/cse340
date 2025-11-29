@@ -22,6 +22,7 @@ const utilities = require("./utilities/index.js")
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const pool = require('./database/');
+const cookieParser = require("cookie-parser");
 
 
 
@@ -49,6 +50,8 @@ app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
+
+app.use(cookieParser())
 
 /* ***********************
  * View Engine and Templates
