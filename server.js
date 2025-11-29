@@ -1,3 +1,8 @@
+// Brandon's errors: On the add classification server-side validation, when the server
+// Finds an invalid entry, it refuses to add it to data base (which is good)
+// BUT it does NOT display the errors and instead takes us to the "Crash Page"
+
+
 /* ******************************************
  * This server.js file is the primary file of the 
  * application. It is used to control the project.
@@ -12,8 +17,38 @@ const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute.js")
+const accountRoute = require("./routes/accountRoute.js")
 const utilities = require("./utilities/index.js")
+const bodyParser = require("body-parser");
+const session = require("express-session");
+const pool = require('./database/');
 
+
+
+
+/* ***********************
+ * Middleware
+ * ************************/
+ app.use(session({
+  store: new (require('connect-pg-simple')(session))({
+    createTableIfMissing: true,
+    pool,
+  }),
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true,
+  name: 'sessionId',
+ }))
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
+// Express Messages Middleware
+app.use(require('connect-flash')())
+app.use(function(req, res, next){
+  res.locals.messages = require('express-messages')(req, res)
+  next()
+})
 
 /* ***********************
  * View Engine and Templates
@@ -32,6 +67,9 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 
 // Inventory routes
 app.use("/inv", inventoryRoute)
+
+// Account Routes
+app.use("/account", accountRoute)
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {

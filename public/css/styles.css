@@ -216,6 +216,88 @@ main {
   font-weight: 700;
 }
 
+/* Flash Message */
+.notice {
+  background-color: rgb(249, 249, 249, 0.75);
+  border: solid red 1px;
+  padding: 1rem;
+  list-style: none;
+
+}
+
+/* Login Form */
+.login-box {
+  background-color: #264653;
+  border-radius: 1rem;
+  padding: 2rem;
+  color: white;
+  max-width: 300px;
+  display: grid;
+  text-align: center;
+}
+
+#login-form {
+  display: grid;
+  place-content: center;
+  text-align: left;
+}
+
+#login-form input {
+  margin-bottom: 1rem;
+  width: 200px;
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+#login-form input[type="submit"] {
+  background-color: #E9C46A;
+  color: black;
+}
+#login-form select {
+  height: 1rem;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+#login-form option {
+  height: 1rem;
+  padding: 0.5rem;
+}
+.login-box a {
+  color: white;
+  text-align: center;
+}
+#login-form span {
+  font-size: 0.8rem;
+  margin: 5px;
+  font-style: italic;
+}
+
+/* Inventory Management Home Page */
+
+.links-box {
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  max-width: 450px;
+
+}
+
+.links-box a {
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 700;
+  background-color:#264653;
+  color: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: solid black 1px;
+}
+.links-box a:hover {
+  box-shadow: 0.5rem 0.5rem 1rem black;
+}
+
+
+
 /* Larger screen querey */
 
 @media screen and (min-width: 700px) {

@@ -1,0 +1,46 @@
+<% if (title) { %>
+    <h1>
+        <%= title %>
+    </h1>
+<% } else { res.redirect('/') } %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+    <ul class="notice">
+        <% errors.array().forEach(error=> { %>
+            <li>
+                <%= error.msg %>
+            </li>
+            <% }) %>
+    </ul>
+    <% } %>
+
+<div class="login-box">
+    <form id="login-form" action="/inv/add-inventory" method="post">
+        <label for="inv_make">Make</label>
+        <input type="text" id="inv_make" name="inv_make" required pattern="[A-Za-z0-9]{1,20}"
+            pattern="[A-Za-z0-9]+" value="<%= locals.inv_make %>">
+        <label for="inv_model">Model</label>
+        <input type="text" id="inv_model" name="inv_model" required value="<%= locals.inv_model %>" pattern="^[A-Za-z0-9]+$">
+        <label for="inv_year">Year</label>
+        <input type="number" id="inv_year" name="inv_year" required value="<%= locals.inv_year %>" pattern="^[0-9]+$">
+        <label for="inv_description">Description</label>
+        <input type="text" id="inv_description" name="inv_description" required value="<%= locals.inv_description %>">
+        <!-- <label for="inv_image">Image</label>
+        <input type="text" id="inv_image" name="inv_image" required value="">
+        <label for="inv_thumbnail">Thumbnail</label>
+        <input type="text" id="inv_thumbnail" name="inv_thumbnail" required value=""> -->
+        <label for="inv_price">Price</label>
+        <input type="text" id="inv_price" name="inv_price" required value="<%= locals.inv_price %>" pattern="^[A-Za-z0-9]+$">
+        <label for="inv_miles">Miles</label>
+        <input type="number" id="inv_miles" name="inv_miles" required value="<%= locals.inv_miles %>" pattern="^[A-Za-z0-9]+$">
+        <label for="inv_color">Color</label>
+        <input type="text" id="inv_color" name="inv_color" required value="<%= locals.inv_color %>" pattern="^[A-Za-z0-9]+$">
+        <label for="classification_id">Classification</label>
+        <!-- <select id="classification_id" name="classification_id" required value="">
+        <option></option> -->
+        <%- classificationList %>
+        <input type="submit" value="Add Vehicle to Inventory">
+    </form>
+</div>
