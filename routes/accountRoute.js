@@ -7,7 +7,7 @@ const regValidate = require('../utilities/account-validation')
 
 
 // // Default Route
-// router.get("/", accountController.buildLoggedInView())
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement))
 
 // Route to account login
 // router.get("/login", utilities.handleErrors(accController.buildLogin))
@@ -27,8 +27,18 @@ router.post(
   utilities.handleErrors(accountController.accountLogin)
 )
 
+router.get("/logout", utilities.handleErrors(accountController.logout))
+
+// UPDATE ACCOUNT INFORMATION
+
+router.get("/update/:accountId", utilities.handleErrors(accountController.buildUpdateAccountView))
+
+router.post("/update", regValidate.updateRules(), regValidate.checkUpdateData, utilities.handleErrors(accountController.updateAccount))
+
+router.post("/updatePassword/", regValidate.passwordRules(), regValidate.checkPasswordData , utilities.handleErrors(accountController.updatePassword))
+
 // Error Event Handling
-// router.get("/broken", utilities.handleErrors(accountController.throwError))   
+router.get("/broken", utilities.handleErrors(accountController.throwError))   
 
 
 // Exports
